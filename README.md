@@ -6,7 +6,7 @@ Made for Professor Stroustrup's (Yes, ***that*** Stroustrup) Fall 2022 COMS W499
 ## Motivation
 Since the birth of AI, AI’s history has been a story of advances in AI-based players beating out professional players in increasingly more complicated games [1]. Information about the latest game algorithms powering these AI game players mostly resides inside academic papers filled with complicated mathematical notation and algorithmic proofs. This confinement to academia gatekeeps knowledge from those without rigorous technical background, such as casual and professional players interested in improving their game-play, as well as interested students.
 
-The latest of these game algorithms is CFR (counterfactual regret minimization), which forms the basis for poker bots at poker competitions [2, 3, 4]. High-level details of CFR are discussed in section 3. 
+The latest of these game algorithms is ***CFR (counterfactual regret minimization)***, which forms the basis for poker bots at poker competitions [2, 3, 4]. High-level details of CFR are discussed in section 3. 
 
 Moreover, because of the nacency of regret-based algorithms, there are few practical materials available to introduce algorithms like CFR.  Arguably the best way to learn the insights behind AI-based game-playing strategies is to interact with AI players. This necessitates the development of interactive programs where people can play against the algorithm, whether the goal is to improve their strategy, learn about the algorithm interactively, or simply have fun.
 
