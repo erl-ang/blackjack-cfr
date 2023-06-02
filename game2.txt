@@ -1,0 +1,45 @@
+Up Cards| Player 0: 5, Player 1: 10, Dealer: 1
+Finished Building Tree, Time Taken (ms): 17
+Num nodes: 133
+CFR TRAINING DONE
+ROOT PAYOFFS: 
+Player 0: 0.0547375
+Player 1: 0.356438
+Dealer: 0
+
+PRINTING P1 ROOT STRATEGY
+Down Card: 1 || Stand: 0.635798, Hit: 0.364202
+Down Card: 2 || Stand: 0.5, Hit: 0.5
+Down Card: 3 || Stand: 0.5, Hit: 0.5
+Down Card: 4 || Stand: 0.5, Hit: 0.5
+Down Card: 5 || Stand: 0.5, Hit: 0.5
+Down Card: 6 || Stand: 0.5, Hit: 0.5
+Down Card: 7 || Stand: 0.538481, Hit: 0.461519
+Down Card: 8 || Stand: 0.561254, Hit: 0.438746
+Down Card: 9 || Stand: 0.57942, Hit: 0.42058
+Down Card: 10 || Stand: 0.620464, Hit: 0.379536
+
+PRINTING P2 STRATEGY AFTER P1 Stand
+Down Card: 1 || Stand: 0.750307, Hit: 0.249693
+Down Card: 2 || Stand: 0.655796, Hit: 0.344204
+Down Card: 3 || Stand: 0.675641, Hit: 0.324359
+Down Card: 4 || Stand: 0.686248, Hit: 0.313752
+Down Card: 5 || Stand: 0.741849, Hit: 0.258151
+Down Card: 6 || Stand: 0.750327, Hit: 0.249673
+Down Card: 7 || Stand: 0.750306, Hit: 0.249694
+Down Card: 8 || Stand: 0.749682, Hit: 0.250318
+Down Card: 9 || Stand: 0.749672, Hit: 0.250328
+Down Card: 10 || Stand: 0.750081, Hit: 0.249919
+
+PRINTING P2 STRATEGY AFTER P1 HITS and Gets a T 
+Down Card: 1 || Stand: 0.750307, Hit: 0.249693
+Down Card: 2 || Stand: 0.677695, Hit: 0.322305
+Down Card: 3 || Stand: 0.669135, Hit: 0.330865
+Down Card: 4 || Stand: 0.689771, Hit: 0.310229
+Down Card: 5 || Stand: 0.680759, Hit: 0.319241
+Down Card: 6 || Stand: 0.701108, Hit: 0.298892
+Down Card: 7 || Stand: 0.697029, Hit: 0.302971
+Down Card: 8 || Stand: 0.720864, Hit: 0.279136
+Down Card: 9 || Stand: 0.729591, Hit: 0.270409
+Down Card: 10 || Stand: 0.739468, Hit: 0.260532
+CFR complete

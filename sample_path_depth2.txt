@@ -1,0 +1,42 @@
+Finished Building Tree, Time Taken (ms): 295
+Num nodes: 13553
+---------
+Upcards
+Player 0: 1 
+Player 1: 1 
+Dealer: 1 
+Player 0 , doneAction: 0, numHits: 0
+Player 1 , doneAction: 0, numHits: 0
+Past Actions: 
+---------
+Upcards
+Player 0: 1 4 
+Player 1: 1 
+Dealer: 1 
+Player 0 , doneAction: 0, numHits: 1
+Player 1 , doneAction: 0, numHits: 0
+Past Actions: 0: h4, 
+---------
+Upcards
+Player 0: 1 4 
+Player 1: 1 8 
+Dealer: 1 
+Player 0 , doneAction: 0, numHits: 1
+Player 1 , doneAction: 0, numHits: 1
+Past Actions: 0: h4, 1: h8, 
+---------
+Upcards
+Player 0: 1 4 10 
+Player 1: 1 8 
+Dealer: 1 
+Player 0 , doneAction: 1, numHits: 2
+Player 1 , doneAction: 0, numHits: 1
+Past Actions: 0: h4, 1: h8, 0: h10, 
+---------
+Upcards
+Player 0: 1 4 10 
+Player 1: 1 8 4 
+Dealer: 1 
+Player 0 , doneAction: 1, numHits: 2
+Player 1 , doneAction: 1, numHits: 2
+Past Actions: 0: h4, 1: h8, 0: h10, 1: h4, 
