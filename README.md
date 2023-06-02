@@ -22,6 +22,7 @@ On an implementation note, we choose to use C++ because
 2) CFR requires a lot of iterations to converge, 
 3) C++’s Object-Oriented nature makes the code conceptually intuitive to understand, and 
 4) coroutines in C++20 can be used to solve different parts of the game tree in parallel (using C++20 was a req for this assignment)
+5) this class is a class on C++...
 
 ### Structure
 First, we present the background information necessary to use Blackjack++, which is broken down into background on CFR and the assumed rules of our specific variant of Blackjack. Section four provides a tutorial on how to use Blackjack++. The fifth section includes more detailed information about Blackjack++’s design. The sixth section describes the performance of Blackjack++ with different inputs. The seventh and final section discusses plans for future work, as well as a post-mortem on the work done and roadblocks encountered.
