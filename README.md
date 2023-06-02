@@ -3,12 +3,14 @@ Team members: Mateo Maturana (mm5589), Marcus Fong (maf2300), Erin Liang (ell214
 
 Made for Professor Stroustrup's (Yes, ***that*** Stroustrup) Fall 2022 COMS W4995 Design Using C++ Course @ Columbia Unversity.
 
-Presentation slides here: 
+[Presentation slides here](https://github.com/erl-ang/blackjack-cfr/blob/master/presentation.pdf)
 
 ## Motivation
-AI’s history has been a story of advances in AI-based players beating out professional players in increasingly more complicated games [1]. Checkers. Chess. Go. Improvements on chess. Improvements on Go. Information about the latest game algorithms powering these AI game players mostly resides inside academic papers filled with complicated mathematical notation and algorithmic proofs. This confinement to academia gatekeeps knowledge from those without rigorous technical background, such as casual and professional players interested in improving their game-play, as well as interested students.
+AI’s history has been a story of advances in AI-based players beating out professional players in increasingly more complicated games [1](https://analyticsindiamag.com/timeline-of-games-mastered-by-artificial-intelligence/). Checkers. Chess. Go. Improvements on chess. Improvements on Go. 
 
-The latest of these game algorithms is ***CFR (counterfactual regret minimization)***, which forms the basis for poker bots at poker competitions [2, 3, 4]. High-level details of CFR are discussed in section 3. 
+Information about the latest game algorithms powering these AI game players mostly resides inside academic papers filled with complicated mathematical notation and algorithmic proofs. This confinement to academia gatekeeps knowledge from those without rigorous technical background, such as casual and professional players interested in improving their game-play, as well as interested students.
+
+The latest of these game algorithms is ***CFR (counterfactual regret minimization)***, which forms the basis for poker bots at poker competitions [2, 3, 4](https://github.com/erl-ang/blackjack-cfr#references). High-level details of CFR are discussed in section 3. 
 
 Moreover, because of the nacency of regret-based algorithms, there are few practical materials available to introduce algorithms like CFR.  Arguably the best way to learn the insights behind AI-based game-playing strategies is to interact with AI players. This necessitates the development of interactive programs where people can play against the algorithm, whether the goal is to improve their strategy, learn about the algorithm interactively, or simply have fun.
 
@@ -101,7 +103,7 @@ For Blackjack++ v1.0, there is no robust command-line argument checking. For now
 
 ## Design Manual
 ### CFR Class
-The details of the CFR+ algorithm are out of scope for this design document and for the sake of the brevity of this design document, will be omitted. However, these details can be found in the paper “Solving Large Imperfect Information Games Using CFR+” [4]. For this section, we provide a high-level description of the methods in the CFR class. 
+The details of the CFR+ algorithm are out of scope for this design document and for the sake of the brevity of this design document, will be omitted. However, these details can be found in the paper “Solving Large Imperfect Information Games Using CFR+” [4](https://arxiv.org/pdf/1407.5042.pdf). For this section, we provide a high-level description of the methods in the CFR class. 
 
 #### `train()`
 Runs cfrIterations number of iterations of CFR+. cfrIterations is supplied by the user as a command-line argument. 
@@ -136,16 +138,16 @@ This method contains the larger game logic for Blackjack++. First, two Player ob
 
 The strategy of Blackjack++ follows the cards that are visible on the table— players can only reasonably make decisions based on the cards that they can see on the table. We denote this internally as the `upCards`.  At the start of the game, these upCards are the cards that are originally dealt. We map each card that is facing up on the table to the player that owns the card in a `std::map<int, std::vector<int>>`
 
-We keep track of the time and the amount of nodes it takes to build the game tree for performance tuning. This lets us keep track of how maxHits and `cfrIterations` impact the game tree build time and size and, correspondingly, how we should optimally be adjusting these parameters.
+We keep track of the time and the amount of nodes it takes to build the game tree for performance tuning. This lets us keep track of how `maxHits` and `cfrIterations` impact the game tree build time and size and, correspondingly, how we should optimally be adjusting these parameters.
 
 #### `printRandomPath(State state)`
 This method is only for debugging/pedagogical purposes. It recursively traverses the resulting game tree and prints out the actions corresponding to a random path of the tree. 
 
 #### `startingCards`
-startingCards is a vector of three ints initialized by command line arguments. While it would be nice to randomize this, we stuck with a simpler implementation in order to test the CFR strategy’s correctness.
+`startingCards` is a vector of three ints initialized by command line arguments. While it would be nice to randomize this, we stuck with a simpler implementation in order to test the CFR strategy’s correctness.
 
 #### `maxHits`
-maxHits is an integer constraining the maximum number of times Blackjack++ players are allowed to hit, or request an extra card from the dealer. As we needed to test the CFR algorithm on small game trees before running it on a full-fledged game of Blackjack++, we provided maxHits as an argument to run the game to test our code on a constrained game tree.
+`maxHits` is an integer constraining the maximum number of times Blackjack++ players are allowed to hit, or request an extra card from the dealer. As we needed to test the CFR algorithm on small game trees before running it on a full-fledged game of Blackjack++, we provided maxHits as an argument to run the game to test our code on a constrained game tree.
 
 #### Game Class Design Choices:
 Alternative approaches to this class included a more object-oriented approach with a deck class, a card class, etc. We opted to implement cards internally as a vector of ints because in the other existing card and deck classes that we looked at, there was a lot of extraneous information stored that we don’t need for computing Blackjack++ strategy.
@@ -158,8 +160,10 @@ We can see the Players being used in the Game class when the game tree is constr
 
 #### `Player(id, doneAction)`
 Players are constructed in Game.cpp as follows:
+```
 auto Player0 = Player(0, false);
 auto Player1 = Player(1, false);
+```
 
 #### `id`
 The id attribute identifies players of Blackjack++. 
@@ -183,9 +187,11 @@ Now that we know the general idea of what our State class represents, lets take 
 
 #### `State::State()`
 The job of our `State()` constructor is to initialize a node in the CFR decision tree to represent the current state of the game. It first calls `initializeMaps()`, which initializes three `std::maps`:
-`std::map<int, std::map<std::string, float>> strategies`;
-`std::map<int, std::map<std::string, float>> regret`;
-`std::map<int, std::map<std::string, float>> strategy_sums`;
+```
+std::map<int, std::map<std::string, float>> strategies;
+std::map<int, std::map<std::string, float>> regret;
+std::map<int, std::map<std::string, float>> strategy_sums;
+```
 These maps map a card point value (1-10) to an action's ("Stand" or "Hit") strategy or regret value. These values are updated and changed throughout the CFR process, and are essential to determining the optimal actions for each State. In other words, for every card value (1-10), there is a correspnoding strategy, regret, and strategy_sums value for each possible action at that point. The constructor then finally calls `populateChildren()`, which is the primary function that is in charge of generating child State objects after taking some action. 
 
 ####`State::populateChildren()`
@@ -235,11 +241,11 @@ However, our initial project proposal was admittedly a bit overambitious. We (ex
 ### Modern C++ 
 Originally in our initial proposal, we wanted to include coroutines and modules to incorporate bits of modern C++ into our project. 
 
-Coroutines: We wanted to use coroutines to concurrently build each subtree of the root of the game tree at the same time to make building the game tree a lot faster. We ran into a lot of problems when trying to incorporate coroutines because there was no support for coroutines. In particular, we tried using external libraries from Facebook and other coroutine abstractions to write coroutines [5, 6].
+Coroutines: We wanted to use coroutines to concurrently build each subtree of the root of the game tree at the same time to make building the game tree a lot faster. We ran into a lot of problems when trying to incorporate coroutines because there was no support for coroutines. In particular, we tried using external libraries from Facebook and other coroutine abstractions to write coroutines [[5](https://github.com/facebook/folly/blob/main/folly/experimental/coro/README.md), [6](https://github.com/lewissbaker/cppcoro)].
 
 To compromise,  we incorporated some vanilla multithreading to concurrently build each subtree of the root at the same time. 
 
-Modules: We thought that incorporating modules would be a quick and simple way to add some C++20 into our project.  When trying to incorporate modules into our project, we ran into some problems with `std::format` utility that we were unable to resolve [7]. 
+Modules: We thought that incorporating modules would be a quick and simple way to add some C++20 into our project.  When trying to incorporate modules into our project, we ran into some problems with `std::format` utility that we were unable to resolve [7](https://stackoverflow.com/questions/65083544/format-no-such-file-or-directory) since C++20 just released. 
 
 ### Better ++ More Interactivity
 As our focus on Blackjack++ was primarily getting the CFR decision trees to be compatible with our Blackjack++ AI player, we didn’t get to spend the effort that we wanted to in making our project the most newbie-friendly. Making Blackjack++ more interactive and friendly to game theory novices would definitely be more of a priority to the next release of Blackjack++. Some ideas that we have include making the AI playable and more usage guidance.
@@ -255,7 +261,7 @@ Although this wasn’t included in our project proposal, we thought it might be 
 
 This deprioritization of abstraction was primarily due to the prioritization of other tasks, namely dedicating time to understanding a new game theory algorithm like CFR and needing something “demoable” for this project. This demoability necessitated also implementing the logic of a game compatible with CFR. Though looking at a specific application of CFR was a necessary step in creating abstraction, it left us less time for abstraction. 
 
-CFR is an iterative algorithm that is proven to converge to a Nash equilibrium in two-player zero-sum imperfect-information games [8]. Other games that we could work on abstracting the CFR library toward could include RPS (rock paper scissors) and Kuhn Poker.
+CFR is an iterative algorithm that is proven to converge to a Nash equilibrium in two-player zero-sum imperfect-information games [8](https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/2e66a9d9a74dc5c11b620f70663400da_MIT15_053S13_tut08.pdf). Other games that we could work on abstracting the CFR library toward could include RPS (rock paper scissors) and Kuhn Poker.
 
 ## References
 1. https://analyticsindiamag.com/timeline-of-games-mastered-by-artificial-intelligence/ 
