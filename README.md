@@ -186,7 +186,7 @@ The job of our `State()` constructor is to initialize a node in the CFR decision
 `std::map<int, std::map<std::string, float>> strategy_sums`;
 These maps map a card point value (1-10) to an action's ("Stand" or "Hit") strategy or regret value. These values are updated and changed throughout the CFR process, and are essential to determining the optimal actions for each State. In other words, for every card value (1-10), there is a correspnoding strategy, regret, and strategy_sums value for each possible action at that point. The constructor then finally calls `populateChildren()`, which is the primary function that is in charge of generating child State objects after taking some action. 
 
-`State::populateChildren()`
+####`State::populateChildren()`
 `populateChildren()` is a function that recursively generates child States. A child State represents the state of the game after taking a specific action. There are 11 actions total, and an action can either be to 1) "Stay" or to 2) "Hit" and retrieve a card that is valued from 1 to 10. The goal of CFR is to simulate all possible to game states (until it reaches a terminal state or a max depth specified by the user), and to do so, it must iterate through all 11 actions per generated State. However, building the tree with only process is very time costly, so we decided to could speed up the process by asynchronously building it with C++ `std::futures`.  Specifically, when `populateChildren` is called for the first time when the tree is being first instantiated, we intitialize 11 asynchronous processes to recursively build the tree from the top-down. Each process is assigned to one of the eleven possible distinct actions (i.e. "Stand", "Hit1", "Hit2", "Hit3", "Hit4", etc.). Then, each process recursively calls `populateChildren()` and simulates all subsequent game states until a terminal state is reached. Once each child process finish generating its part of the decision tree, the `std::future` returns a State object that represents the state of the game after taking its assigned action. Meanwhile, while the parent process blocks its program until all of its child processes have finished, it finally assigns the returned State objects to each corresponding State-action pair in its nextStates map. Because nextStates maps the current State to a subsequent game State after taking one out of the eleven actions, the root of our CFR tree is therefore able to access all subsequent States of the game by recursively recursing through nextStates and all of its possible State-action pairs.
 
 #### `State State::createStandState()`
@@ -204,7 +204,15 @@ To create the next State, it has to change and update several variables. Firstly
 To quantify the performance of Blackjack++, we ran Blackjack++ on 3 significantly different sets of input and compared the resulting performance. Specifically, we measured both the time it took to train the CFR algorithm, as well as the time it took to build the entire game tree. For the different input sizes, we used 1k, 10k, and 100k `cfrIterations`. We also tested 1, 2, and 3 `maxHits` against these different input sizes. To control the game tree, we ran each experiment with every player starting with a 10. 
 
 Here are the results summed up in graph form:
-
+<p align='center'>
+<img src="https://github.com/erl-ang/cpp-blackjack/blob/master/assets/graph1.png">
+</p>
+<p align='center'>
+<img src="https://github.com/erl-ang/cpp-blackjack/blob/master/assets/graph2.png">
+</p>
+<p align='center'>
+<img src="https://github.com/erl-ang/cpp-blackjack/blob/master/assets/graph3.png">
+</p>
 The following three graphs illustrate the Impact of the command line arguments, maxHits and cfrIterations, on the build time of the Blackjack++ game tree. Overall, the larger patterns are that the build time of the tree stays relatively constant when varying the CFR iterations and keeping the maxHits the same. This makes sense because cfrIterations should only impact the training time of the CFR algorithm, not the build time of the tree. Another trend is that the build time greatly increases when maxHits is incremented. This makes sense because there is approximately a branching factor of ~100 for an increment of 1 in maxHit. The running time accordingly increases by a factor of ~100.
 
 
