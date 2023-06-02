@@ -3,8 +3,10 @@ Team members: Mateo Maturana (mm5589), Marcus Fong (maf2300), Erin Liang (ell214
 
 Made for Professor Stroustrup's (Yes, ***that*** Stroustrup) Fall 2022 COMS W4995 Design Using C++ Course @ Columbia Unversity.
 
+Presentation slides here: 
+
 ## Motivation
-Since the birth of AI, AI’s history has been a story of advances in AI-based players beating out professional players in increasingly more complicated games [1]. Information about the latest game algorithms powering these AI game players mostly resides inside academic papers filled with complicated mathematical notation and algorithmic proofs. This confinement to academia gatekeeps knowledge from those without rigorous technical background, such as casual and professional players interested in improving their game-play, as well as interested students.
+AI’s history has been a story of advances in AI-based players beating out professional players in increasingly more complicated games [1]. Checkers. Chess. Go. Improvements on chess. Improvements on Go. Information about the latest game algorithms powering these AI game players mostly resides inside academic papers filled with complicated mathematical notation and algorithmic proofs. This confinement to academia gatekeeps knowledge from those without rigorous technical background, such as casual and professional players interested in improving their game-play, as well as interested students.
 
 The latest of these game algorithms is ***CFR (counterfactual regret minimization)***, which forms the basis for poker bots at poker competitions [2, 3, 4]. High-level details of CFR are discussed in section 3. 
 
@@ -20,7 +22,7 @@ On an implementation note, we choose to use C++ because
 4) coroutines in C++20 can be used to solve different parts of the game tree in parallel (using C++20 was a req for this assignment)
 
 ### Structure
-First, we present the background information necessary to use Blackjack++, which is broken down into background on CFR and the assumed rules of our specific variant of Blackjack. Section 4 provides a tutorial on how to use Blackjack++. The fifth section includes more detailed information about Blackjack++’s design. The sixth section describes the performance of Blackjack++ with different inputs. The seventh and final section discusses plans for future work, as well as a post-mortem on the work done and roadblocks encountered.
+First, we present the background information necessary to use Blackjack++, which is broken down into background on CFR and the assumed rules of our specific variant of Blackjack. Section four provides a tutorial on how to use Blackjack++. The fifth section includes more detailed information about Blackjack++’s design. The sixth section describes the performance of Blackjack++ with different inputs. The seventh and final section discusses plans for future work, as well as a post-mortem on the work done and roadblocks encountered.
 
 ## Background Information
 This section is meant to provide the necessary background information for readers that are not familiar with the mechanics of Blackjack or game theory to understand CFR. 
