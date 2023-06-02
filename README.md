@@ -1,7 +1,7 @@
 # Blackjack++: Using Counterfactual Regret Minimization in Large Imperfect-Information Games
 Team members: Mateo Maturana (mm5589), Marcus Fong (maf2300), Erin Liang (ell2147)
 
-Made for Professor Stroustrup's Fall 2022 COMS W4995 Design Using C++ Course @ Columbia Unversity.
+Made for Professor Stroustrup's (Yes, ***that*** Stroustrup) Fall 2022 COMS W4995 Design Using C++ Course @ Columbia Unversity.
 
 ## Motivation
 Since the birth of AI, AI’s history has been a story of advances in AI-based players beating out professional players in increasingly more complicated games [1]. Information about the latest game algorithms powering these AI game players mostly resides inside academic papers filled with complicated mathematical notation and algorithmic proofs. This confinement to academia gatekeeps knowledge from those without rigorous technical background, such as casual and professional players interested in improving their game-play, as well as interested students.
