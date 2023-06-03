@@ -3,8 +3,6 @@ Team members: Mateo Maturana (mm5589), Marcus Fong (maf2300), Erin Liang (ell214
 
 Made for Professor Stroustrup's (Yes, ***that*** Stroustrup) Fall 2022 COMS W4995 Design Using C++ Course @ Columbia Unversity.
 
-[Presentation slides here](https://github.com/erl-ang/blackjack-cfr/blob/master/presentation.pdf)
-
 ## Motivation ❓
 AI’s history has been a story of advances in AI-based players beating out professional players in increasingly more complicated games [[1]](https://analyticsindiamag.com/timeline-of-games-mastered-by-artificial-intelligence/). Checkers. Chess. Go. Improvements on chess. Improvements on Go. 
 
