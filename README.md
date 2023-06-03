@@ -13,7 +13,7 @@ The latest of these game algorithms is ***CFR (counterfactual regret minimizatio
 Moreover, because of the nacency of regret-based algorithms, there are few practical materials available to introduce algorithms like CFR.  Arguably the best way to learn the insights behind AI-based game-playing strategies is to interact with AI players. This necessitates the development of interactive programs where people can play against the algorithm, whether the goal is to improve their strategy, learn about the algorithm interactively, or simply have fun.
 
 ## Goals 🥅
-Our project’s goal is to design a CFR algorithm library in C++, in addition to implementing a game of Blackjack to provide users with a worked example of how the CFR library can interact with games like Blackjack. Blackjack++ will hopefully not only let users understand CFR somewhat interactively, but also encourage the further development of the CFR library for solving other games.
+Our project’s goal is to implement a game of Blackjack to provide users with a worked example of how the CFR library can interact with games like Blackjack. Blackjack++ will hopefully not only let users understand CFR somewhat interactively, but also encourage the further development of the CFR library for solving other games.
 
 On an implementation note, we choose to use C++ because 
 1) many games like Blackjack can have rather large game trees, 
@@ -232,7 +232,7 @@ Coroutines: We wanted to use coroutines to concurrently build each subtree of th
 
 To compromise,  we incorporated some vanilla multithreading to concurrently build each subtree of the root at the same time. 
 
-Modules: We thought that incorporating modules would be a quick and simple way to add some C++20 into our project.  When trying to incorporate modules into our project, we ran into some problems with `std::format` utility that we were unable to resolve [7](https://stackoverflow.com/questions/65083544/format-no-such-file-or-directory) since C++20 just released. 
+Modules: We thought that incorporating modules would be a quick and simple way to add some C++20 into our project.  When trying to incorporate modules into our project, we ran into some problems with `std::format` utility that we were unable to resolve [[7]](https://stackoverflow.com/questions/65083544/format-no-such-file-or-directory) since C++20 just released. 
 
 ### Better ++ More Interactivity
 As our focus on Blackjack++ was primarily getting the CFR decision trees to be compatible with our Blackjack++ AI player, we didn’t get to spend the effort that we wanted to in making our project the most newbie-friendly. Making Blackjack++ more interactive and friendly to game theory novices would definitely be more of a priority to the next release of Blackjack++. Some ideas that we have include making the AI playable and more usage guidance.
@@ -243,7 +243,7 @@ Instead of incorporating interactivity, we settled for a middle ground that stil
 
 On more of a nitpicky note,  when users want to use Blackjack++, they build our project and run Blackjack++ by supplying  the desired maxHits and cfrIterations which determine the game tree size. Users unfamiliar with CFR, Blackjack, or game theory could benefit from some <usage>  printing guidance when supplying these parameters.
 
-### Making it Generalizable to other Games
+### Making it generalizable to other Games
 Although this wasn’t included in our project proposal, we thought it might be useful to try to create a CFR library that was abstracted enough to solve other games other than Blackjack++. However, this was not a priority for Blackjack++ v1.0. 
 
 This deprioritization of abstraction was primarily due to the prioritization of other tasks, namely dedicating time to understanding a new game theory algorithm like CFR and needing something “demoable” for this project. This demoability necessitated also implementing the logic of a game compatible with CFR. Though looking at a specific application of CFR was a necessary step in creating abstraction, it left us less time for abstraction. 
